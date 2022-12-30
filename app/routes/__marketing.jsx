@@ -5,18 +5,24 @@ import { getUserFromSession } from '~/data/auth.server';
 import marketingStyles from '~/styles/marketing.css';
 
 export default function MarketingLayout() {
-  return (
-    <>
-      <MainHeader />
-      <Outlet />;
-    </>
-  );
+	return (
+		<>
+			<MainHeader />
+			<Outlet />;
+		</>
+	);
 }
 
 export function loader({ request }) {
-  return getUserFromSession(request);
+	return getUserFromSession(request);
 }
 
 export function links() {
-  return [{ rel: 'stylesheet', href: marketingStyles }];
+	return [{ rel: 'stylesheet', href: marketingStyles }];
+}
+
+export function headers() {
+	return {
+		'Cache-Control': 'max-age=3600',
+	};
 }
